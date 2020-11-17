@@ -25,7 +25,7 @@ public class TestUniquelyNamedPersons {
 
         Stream
                 .generate(factory::createRandomPerson)
-                .limit(9999)
+                .limit(99999999)
                 .forEach(warehouse::addPerson);
     }
 
@@ -59,6 +59,7 @@ public class TestUniquelyNamedPersons {
         List<String> expected = uniqueNameDerivation.subList(0, valueOfN);
         Assert.assertEquals(expected.toString(), actual.toString());
     }
+
 
 
 

@@ -5,6 +5,9 @@ import com.github.curriculeon.anthropoid.PersonFactory;
 import com.github.curriculeon.tools.RandomUtils;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -13,6 +16,7 @@ import java.util.stream.Stream;
 public class StreamFilter {
     private final Stream<Person> personStream;
     public final String startingCharacter;
+    private Predicate<Person> findName;
 
     /**
      * No arg constructor
@@ -57,7 +61,10 @@ public class StreamFilter {
      * @return a list of person object whose name starts with `this.startingCharacter`
      */ //TODO
     public List<Person> toListMultiLine() {
-        return null;
+        Predicate<Person> personPred = person -> person.getName().startsWith(this.startingCharacter);
+        Stream<Person> stream = personStream.filter(personPred);
+        return stream.collect(Collectors.toList());
+
     }
 
 
@@ -67,7 +74,9 @@ public class StreamFilter {
      * @return a list of person objects whose name starts with `this.startingCharacter`
      */ //TODO
     public List<Person> toListOneLine() {
-        return null;
+        return personStream
+                .filter(person -> person.getName().startsWith(this.startingCharacter))
+                .collect(Collectors.toList());
     }
 
 
@@ -77,7 +86,10 @@ public class StreamFilter {
      * @return an array of person object whose name starts with `this.startingCharacter`
      */ //TODO
     public Person[] toArrayOneLine() {
-        return null;
+        Person[] personArray;
+        return personStream
+                .filter(person -> person.getName().startsWith(this.startingCharacter))
+                .toArray(Person[]::new);
     }
 
 
@@ -87,7 +99,9 @@ public class StreamFilter {
      * @return an array of person object whose name starts with `this.startingCharacter`
      */ //TODO
     public Person[] toArrayMultiLine() {
-        return null;
+        findName = person -> person.getName().startsWith(this.startingCharacter);
+        Stream<Person> makeStream = personStream.filter(findName);
+        return makeStream.toArray(Person[]::new);
     }
 
 }
