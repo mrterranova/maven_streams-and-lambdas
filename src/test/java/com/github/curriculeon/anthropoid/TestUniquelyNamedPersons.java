@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 /**
  * @author leon on 08/10/2018.
  */
+
 public class TestUniquelyNamedPersons {
 
     private PersonWarehouse warehouse;
@@ -25,7 +26,7 @@ public class TestUniquelyNamedPersons {
 
         Stream
                 .generate(factory::createRandomPerson)
-                .limit(99999999)
+                .limit(999)
                 .forEach(warehouse::addPerson);
     }
 
@@ -76,7 +77,6 @@ public class TestUniquelyNamedPersons {
         // Then
         actual.forEach(name -> Assert.assertTrue(name.startsWith(startingCharacter.toString())));
     }
-
 
 
     private List<String> deriveUniqueNames(PersonWarehouse warehouse) {

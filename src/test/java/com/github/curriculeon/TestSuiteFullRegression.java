@@ -17,4 +17,5 @@ import org.junit.runners.Suite;
  * @ATTENTION_TO_STUDENTS You are FORBIDDEN from modifying this class
  */
 public class TestSuiteFullRegression {
+
 }
